@@ -10,11 +10,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   
   ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => "587",
-    :authentication => :plain,
-    :user_name => "my-email@my-domain.com",
-    :password => ENV["SMTP_ENTRY"],
+    :address              => "smtp.gmail.com",
+    :port                 => "587",
+    :authentication       => :plain,
+    :user_name            => "my-email@my-domain.com",
+    :password             => ENV["SMTP_ENTRY"],
     :enable_starttls_auto => true
   }
 
