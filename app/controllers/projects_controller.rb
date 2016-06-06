@@ -78,4 +78,5 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:title, :details, :expected_completion_date, :tenant_id)
     end
+  end
 end

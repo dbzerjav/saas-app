@@ -1,7 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :tenant
   validates_uniqueness_of :title
-  vaidate :free_plan_can_only_have_one_project
+  has_many :artifacts, dependent: :destroy
+  validate :free_plan_can_only_have_one_project
   
   def free_plan_can_only_have_one_project
     if self.new_record? && (tenant.projects.count > 0) && (tenant.plan == 'free')
