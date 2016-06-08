@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
 
   def users
     @project_users = (@project.users + (User.where(tenant_id: @tenant.id, is_admin: true))) - [current_user]
-    @other_users = @tenant.users.where(tenant_id: @tenant.id, is_admin: false) - (@project_users + [current_user]) 
+    @other_users = @tenant.users.where(is_admin: false) - (@project_users + [current_user]) 
   end
   
   def add_user
@@ -91,11 +91,11 @@ class ProjectsController < ApplicationController
       unless params[:tenant_id] == Tenant.current_tenant_id.to_s
         redirect_to :root, 
                     flash: {error: 'You are not authorized to access organizations other than your own.'}
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :details, :expected_completion_date, :tenant_id)
     end
-  end
 end
