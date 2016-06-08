@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :projects do
       get 'users', on: :member
       put 'add_user', on: :member
+    end
   end
   resources :members
   get 'home/index'
